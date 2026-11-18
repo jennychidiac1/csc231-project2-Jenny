@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private float moveInput;
     private bool isGrounded;
+    public bool canMove = true;
     private Animator animator;
     private SpriteRenderer sr;
 
@@ -25,6 +26,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (!canMove) { moveInput = 0f; return; }
         Keyboard kb = Keyboard.current;
         if (kb == null) return;
 

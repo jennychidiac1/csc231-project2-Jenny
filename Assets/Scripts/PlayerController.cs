@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private float moveInput;
     private bool isGrounded;
+    public int Facing => sr.flipX ? -1 : 1;
     public bool canMove = true;
     private Animator animator;
     private SpriteRenderer sr;

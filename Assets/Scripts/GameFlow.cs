@@ -13,6 +13,8 @@ public class GameFlow : MonoBehaviour
     private int served;
     private int angry;
 
+    public bool Ended { get; private set; }
+
     void Awake()
     {
         Instance = this;
@@ -40,11 +42,13 @@ public class GameFlow : MonoBehaviour
     {
         if (angry >= 2)
         {
+            Ended = true;
             player.canMove = false;
             gameOverPanel.SetActive(true);
         }
         else if (served >= customers.Length)
         {
+            Ended = true;
             player.canMove = false;
             winPanel.SetActive(true);
         }
@@ -52,6 +56,7 @@ public class GameFlow : MonoBehaviour
 
     public void Restart()
     {
+        MenuManager.skipTitle = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 

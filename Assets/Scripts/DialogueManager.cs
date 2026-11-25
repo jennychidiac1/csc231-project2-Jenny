@@ -47,7 +47,7 @@ public class DialogueManager : MonoBehaviour
 
     void Update()
     {
-        if (!active || Time.frameCount == startFrame) return;
+        if (!active || Time.frameCount == startFrame || Time.timeScale == 0f) return;
 
         Keyboard kb = Keyboard.current;
         if (kb != null && kb.spaceKey.wasPressedThisFrame)

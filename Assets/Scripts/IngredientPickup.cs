@@ -1,7 +1,6 @@
 using UnityEngine;
 
-public enum IngredientType { Feather, Jewelry, MandrakeRoot, VoodooDoll, ZombieHand }
-
+public enum IngredientType { VoodooDoll, ZombieHand, Feather, Jewelry, MandrakeRoot }
 public class IngredientPickup : MonoBehaviour
 {
     [SerializeField] private IngredientType type;

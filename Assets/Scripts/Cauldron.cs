@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 public class Cauldron : MonoBehaviour
 {
@@ -127,21 +128,34 @@ public class Cauldron : MonoBehaviour
         return n;
     }
 
+    string Nice(IngredientType type)
+    {
+        return Regex.Replace(type.ToString(), "(?<!^)([A-Z])", " $1");
+    }
+
     void Refresh()
     {
         Customer c = GameFlow.Instance.CurrentCustomer();
-        orderText.text = c == null ? "" : c.CustomerName + " wants: " + c.PotionName;
+        if (c == null)
+        {
+            orderText.text = "";
+        }
+        else
+        {
+            string needs = string.Join(", ", System.Array.ConvertAll(c.Recipe, t => Nice(t)));
+            orderText.text = c.CustomerName + " wants: " + c.PotionName + "\nNeeds: " + needs;
+        }
 
         for (int i = 0; i < countLabels.Length; i++)
         {
             IngredientType type = (IngredientType)i;
             int left = IngredientInventory.Instance.Get(type) - CountSelected(type);
-            countLabels[i].text = type + " x" + left;
+            countLabels[i].text = Nice(type) + " x" + left;
         }
 
         selectionText.text = selected.Count == 0
             ? "Cauldron: empty"
-            : "Cauldron: " + string.Join(", ", selected);
+            : "Cauldron: " + string.Join(", ", selected.ConvertAll(t => Nice(t)));
     }
 
     void OnTriggerEnter2D(Collider2D other)

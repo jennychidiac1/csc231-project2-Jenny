@@ -172,7 +172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpellNewMonoBehaviourScript
   speed: 10
   lifetime: 2
-  damage: 1
+  damage: 2
   groundLayer:
     serializedVersion: 2
     m_Bits: 0

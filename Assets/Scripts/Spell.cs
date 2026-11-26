@@ -4,7 +4,7 @@ public class Spell : MonoBehaviour
 {
     [SerializeField] private float speed = 10f;
     [SerializeField] private float lifetime = 2f;
-    [SerializeField] private int damage = 1;
+    [SerializeField] private float damage = 2f;
     [SerializeField] private LayerMask groundLayer;
 
     private Rigidbody2D rb;

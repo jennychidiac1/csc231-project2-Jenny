@@ -84,6 +84,7 @@ public class Cauldron : MonoBehaviour
         }
 
         bool correct = Matches(c.Recipe);
+        AudioManager.Instance.PlayBrew(correct);
 
         foreach (IngredientType t in selected)
         {

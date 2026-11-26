@@ -42,12 +42,14 @@ public class GameFlow : MonoBehaviour
     {
         if (angry >= 2)
         {
+            AudioManager.Instance.PlayGameOver();
             Ended = true;
             player.canMove = false;
             gameOverPanel.SetActive(true);
         }
         else if (served >= customers.Length)
         {
+            AudioManager.Instance.PlayWin();
             Ended = true;
             player.canMove = false;
             winPanel.SetActive(true);

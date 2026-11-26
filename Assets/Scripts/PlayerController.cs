@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private float moveInput;
     private bool isGrounded;
+    private bool wasGrounded;
     public int Facing => sr.flipX ? -1 : 1;
     public bool canMove = true;
     private Animator animator;
@@ -40,8 +41,13 @@ public class PlayerController : MonoBehaviour
 
         if (kb.spaceKey.wasPressedThisFrame && isGrounded)
         {
+            if (isGrounded && !wasGrounded) AudioManager.Instance.PlayLand();
+            wasGrounded = isGrounded;
+            AudioManager.Instance.PlayJump();
+            Effects.Instance.LandDust(groundCheck.position);
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
+
 
         animator.SetFloat("Speed", Mathf.Abs(moveInput));
         animator.SetBool("IsGrounded", isGrounded);

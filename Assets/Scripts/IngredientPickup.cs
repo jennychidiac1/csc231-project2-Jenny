@@ -9,6 +9,8 @@ public class IngredientPickup : MonoBehaviour
     {
         if (other.GetComponentInParent<PlayerHealth>() == null) return;
         IngredientInventory.Instance.Add(type);
+        AudioManager.Instance.PlayCollect();
+        Effects.Instance.PickupSparkle(transform.position);
         Destroy(gameObject);
     }
 }

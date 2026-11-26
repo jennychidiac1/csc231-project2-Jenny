@@ -38,6 +38,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
+        AudioManager.Instance.PlayHurt();
         if (isDead || Time.time < invincibleUntil) return;
 
         currentHealth -= amount;

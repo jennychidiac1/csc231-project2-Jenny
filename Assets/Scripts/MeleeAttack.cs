@@ -33,6 +33,7 @@ public class MeleeAttack : MonoBehaviour
         animator.SetTrigger(useSecondAttack ? "Attack2" : "Attack1");
         useSecondAttack = !useSecondAttack;
         StartCoroutine(DealDamage());
+        AudioManager.Instance.PlayAttack();
     }
 
     IEnumerator DealDamage()
